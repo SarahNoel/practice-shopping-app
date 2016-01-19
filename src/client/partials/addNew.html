@@ -1,0 +1,35 @@
+<div ng-controller= 'addNewItemCtrl' class='clear-sidebar'>
+  <br>
+<h1>Add a New Item</h1>
+
+  <form name='addItemForm'>
+    <div class="form-group">
+      <label>Item Name</label>
+      <input ng-model='addItem.name' type="text" class="form-control" placeholder="T-Shirt"required>
+    </div>
+
+    <div class="form-group">
+      <label>Price</label>
+      <input class='form-control' type="text" placeholder="5.99" ng-model = 'addItem.price'>
+    </div>
+
+    <div class="form-group">
+      <label>Item Description</label>
+      <input ng-model='addItem.description' type="text" class="form-control" placeholder="100% cotton, variety of colors"required>
+    </div>
+
+    <button ng-click = 'createItem()' class='btn btn-primary'>Add Item</button>
+  </form>
+
+
+<div ng-repeat = 'item in allItems'>
+  <ul>
+    <li> {{item.name}}</li>
+    <li> {{item.description}}</li>
+    <li> ${{item.price}}</li>
+  </ul>
+</div>
+
+</div>
+
+
