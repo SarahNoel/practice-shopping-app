@@ -60,8 +60,8 @@ router.delete('/item/:id', function(req, res){
 });
 
 //put-update one
-router.post('/item/:id', function(req, res){
-  var updateItem = {'name':req.body.name, 'price':req.body.price};
+router.put('/item/:id', function(req, res){
+  var updateItem = {'name':req.body.name, 'price':req.body.price, 'description':req.body.description};
   var options = {new:true};
   Item.findByIdAndUpdate(req.params.id, updateItem, options, function(err, item){
     if(err){

@@ -1,34 +1,65 @@
 <div ng-controller= 'addNewItemCtrl' class='clear-sidebar'>
   <br>
-<h1>Add a New Item</h1>
 
-  <form name='addItemForm'>
-    <div class="form-group">
-      <label>Item Name</label>
-      <input ng-model='addItem.name' type="text" class="form-control" placeholder="T-Shirt"required>
+  <div ng-hide='editingItem'>
+    <h1>Add a New Item</h1>
+
+      <form name='addItemForm'>
+        <div class="form-group">
+          <label>Item Name</label>
+          <input ng-model='addItem.name' type="text" class="form-control" placeholder="T-Shirt"required>
+        </div>
+
+        <div class="form-group">
+          <label>Price</label>
+          <input class='form-control' type="text" placeholder="5.99" ng-model = 'addItem.price'>
+        </div>
+
+        <div class="form-group">
+          <label>Item Description</label>
+          <input ng-model='addItem.description' type="text" class="form-control" placeholder="100% cotton, variety of colors"required>
+        </div>
+
+        <button ng-disabled = 'addItemForm.$invalid' ng-click = 'createItem()' class='btn btn-primary'>Add Item</button>
+      </form>
+
+    <br>
+    <ul><h3>All Items</h3></ul>
+    <div ng-repeat = 'item in allItems'>
+      <ul>
+        <li> {{item.name}}</li>
+        <li> {{item.description}}</li>
+        <li> ${{item.price}}</li>
+        <li><button ng-click='getItem(item._id)' class='btn btn-warning'>Edit</button> <button ng-click='deleteItem(item._id)' class='btn btn-danger'>Delete</button></li>
+      </ul>
     </div>
+  </div>
 
-    <div class="form-group">
-      <label>Price</label>
-      <input class='form-control' type="text" placeholder="5.99" ng-model = 'addItem.price'>
-    </div>
+  <div ng-show='editingItem'>
+    <form name='editItemForm'>
+        <div class="form-group">
+          <label>Item Name</label>
+          <input ng-model='editItem.name' type="text" class="form-control" required>
+        </div>
 
-    <div class="form-group">
-      <label>Item Description</label>
-      <input ng-model='addItem.description' type="text" class="form-control" placeholder="100% cotton, variety of colors"required>
-    </div>
+        <div class="form-group">
+          <label>Price</label>
+          <input class='form-control' type="text" ng-model = 'editItem.price'>
+        </div>
 
-    <button ng-click = 'createItem()' class='btn btn-primary'>Add Item</button>
-  </form>
+        <div class="form-group">
+          <label>Item Description</label>
+          <input ng-model='editItem.description' type="text" class="form-control" required>
+        </div>
 
+        <button ng-click = 'updateItem(editItem._id)' class='btn btn-primary'>Update Item</button>
+      </form>
+  </div>
 
-<div ng-repeat = 'item in allItems'>
-  <ul>
-    <li> {{item.name}}</li>
-    <li> {{item.description}}</li>
-    <li> ${{item.price}}</li>
-  </ul>
-</div>
+<br>
+
+<a href = '/#/'><button class = 'btn btn-success'>Back</button></a>
+
 
 </div>
 
